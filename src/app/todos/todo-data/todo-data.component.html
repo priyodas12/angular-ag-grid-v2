@@ -1,13 +1,16 @@
-<div style="text-align: center">
+<div class="todo-container">
   <h1>Ag-Grid with HTTP Example</h1>
-  <div class="ag-theme-quartz"
-  style="height: 500px;">
+    <button (click)="clearSelection()">Clear selection</button>
+    
     <ag-grid-angular
-      style="width: 100%; height: 50%;"
-      class="ag-theme-alpine"
+      style="width: 850px; height: 500px"
+      class="ag-theme-quartz"
       [rowData]="rowData"
-      [columnDefs]="ColumnDefs"
+      [columnDefs]="columnDefinitions"
       (gridReady)="getTododListFromService($event)"
+      [defaultColDef]="defaultColDef"
+      [rowSelection]="'multiple'"
+      [animateRows]="true"
+      (cellClicked)="onCellClickEvent($event)"
     ></ag-grid-angular>
   </div>
-</div>

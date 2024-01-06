@@ -17,7 +17,9 @@ export class TodoSvcService {
 
   getTodoList() {
     this.todoList = this.http.get<any[]>(this.todoApi);
-    console.log(this.todoList);
+    console.log(this.todoList.forEach(data => {
+      console.log(data);
+    }));
     return this.todoList;
   }
 }
