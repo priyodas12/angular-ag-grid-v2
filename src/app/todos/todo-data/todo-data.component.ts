@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { TodoSvcService } from '../service/todo-svc.service';
 import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
-import { CellClickedEvent, ColDef } from 'ag-grid-community';
+import { CellClickedEvent, ColDef, GridOptions } from 'ag-grid-community';
 import { Observable } from 'rxjs';
+import 'ag-grid-enterprise';
 
 @Component({
   selector: 'app-todo-data',
@@ -14,6 +15,8 @@ import { Observable } from 'rxjs';
 export class TodoDataComponent {
 
   rowData!: any[];
+
+  gridOptions: GridOptions = {};
 
   @ViewChild(AgGridAngular)
   agGrid!: AgGridAngular;
@@ -37,10 +40,17 @@ export class TodoDataComponent {
   }
 
   ngOnInit() {
+
     this.rowDataObservable$ = this.todoService.getTodoList();
   }
 
   getTododListFromService(params: any) {
+    const { api, columnApi } = params;
+
+    this.gridOptions.api = api;
+    this.gridOptions.columnApi = columnApi;
+    console.log("1", api, columnApi);
+
     this.rowDataObservable$.subscribe(data => {
       this.rowData = data;
     })

@@ -2,9 +2,8 @@
   <h1>Ag-Grid with HTTP Example</h1>
     <button (click)="clearSelection()">Clear selection</button>
     
-    <ag-grid-angular
-      style="width: 850px; height: 500px"
-      class="ag-theme-quartz"
+    <ag-grid-angular 
+      class="ag-theme-quartz ag-grid-css"
       [rowData]="rowData"
       [columnDefs]="columnDefinitions"
       (gridReady)="getTododListFromService($event)"
